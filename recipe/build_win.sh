@@ -10,10 +10,10 @@ export GOTMPDIR="$(pwd)/tmp"
 
 mkdir -p "${GOTMPDIR}"
 
-export GOTAGS="openssl"
-export CGO_CFLAGS="${CFLAGS}"
-export CGO_CXXFLAGS="${CPPFLAGS}"
-export CGO_LDFLAGS="${LDFLAGS}"
+# export GOTAGS="openssl"
+# export CGO_CFLAGS="${CFLAGS}"
+# export CGO_CXXFLAGS="${CPPFLAGS}"
+# export CGO_LDFLAGS="${LDFLAGS}"
 
 module='github.com/ipfs/kubo'
 
