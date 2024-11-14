@@ -1,6 +1,7 @@
 {% set min_go = ">=1.22" %}
+{% set min_go = ">=1.22" %}
 {% set name = "kubo" %}
-{% set version = "0.30.0" %}
+{% set version = "0.32.0" %}
 {% set gomodule = "github.com/ipfs/" ~ name %}
 
 package:
@@ -10,7 +11,7 @@ package:
 source:
   - folder: src/{{ gomodule }}
     url: https://{{ gomodule }}/releases/download/v{{ version }}/{{ name }}-source.tar.gz
-    sha256: f863b6dc0f431c81ee2b318d90f2c136fbcfcc52f715f418458bbd4df3e28b4f
+    sha256: e891868a8dde7eb675b124fb857f8916de4328c40503adf582ee84b873b34751
 
 build:
   number: 0
