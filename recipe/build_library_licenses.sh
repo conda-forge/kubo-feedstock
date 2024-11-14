@@ -21,6 +21,7 @@ go-licenses save \
     --ignore archive/zip \
     --ignore bufio \
     --ignore bytes \
+    --ignore cache \
     --ignore cmp \
     --ignore compress/flate \
     --ignore compress/gzip \
@@ -64,18 +65,24 @@ go-licenses save \
     --ignore flag \
     --ignore fmt \
     --ignore go/ast \
+    --ignore go/build/constraint \
+    --ignore go/doc/comment \
     --ignore go/format \
+    --ignore go/internal/typeparams \
     --ignore go/parser \
     --ignore go/printer \
+    --ignore go/scanner \
     --ignore go/token \
     --ignore hash \
     --ignore hash/crc32 \
     --ignore hash/fnv \
     --ignore internal/abi \
     --ignore internal/asan \
+    --ignore internal/bisect \
     --ignore internal/bytealg \
     --ignore internal/byteorder \
     --ignore internal/chacha8rand \
+    --ignore internal/concurrent \
     --ignore internal/coverage/rtcov \
     --ignore internal/cpu \
     --ignore internal/filepathlite \
@@ -105,6 +112,7 @@ go-licenses save \
     --ignore internal/sysinfo \
     --ignore internal/testlog \
     --ignore internal/unsafeheader \
+    --ignore internal/weak \
     --ignore io \
     --ignore io/fs \
     --ignore io/ioutil \
@@ -153,16 +161,23 @@ go-licenses save \
     --ignore unicode/utf16 \
     --ignore unicode/utf8 \
     --ignore unique \
+    --ignore vendor/golang.org/x/crypto/chacha20 \
     --ignore vendor/golang.org/x/crypto/chacha20poly1305 \
     --ignore vendor/golang.org/x/crypto/cryptobyte \
     --ignore vendor/golang.org/x/crypto/cryptobyte/asn1 \
     --ignore vendor/golang.org/x/crypto/hkdf \
+    --ignore vendor/golang.org/x/crypto/internal/alias \
+    --ignore vendor/golang.org/x/crypto/internal/poly1305 \
     --ignore vendor/golang.org/x/crypto/sha3 \
     --ignore vendor/golang.org/x/net/dns/dnsmessage \
     --ignore vendor/golang.org/x/net/http/httpguts \
     --ignore vendor/golang.org/x/net/http/httpproxy \
     --ignore vendor/golang.org/x/net/http2/hpack \
     --ignore vendor/golang.org/x/net/idna \
+    --ignore vendor/golang.org/x/sys/cpu \
+    --ignore vendor/golang.org/x/text/secure/bidirule \
+    --ignore vendor/golang.org/x/text/unicode/bidi \
+    --ignore vendor/golang.org/x/text/unicode/norm \
     --save_path "${LIBRARY_LICENSES_PATH}"
 
 find "${LIBRARY_LICENSES_PATH}"
