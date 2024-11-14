@@ -178,6 +178,7 @@ go-licenses save \
     --ignore vendor/golang.org/x/text/secure/bidirule \
     --ignore vendor/golang.org/x/text/unicode/bidi \
     --ignore vendor/golang.org/x/text/unicode/norm \
+    --ignore vendor/golang.org/x/text/transform \
     --save_path "${LIBRARY_LICENSES_PATH}"
 
 find "${LIBRARY_LICENSES_PATH}"
