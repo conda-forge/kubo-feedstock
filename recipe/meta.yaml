@@ -1,7 +1,6 @@
-{% set min_go = ">=1.22" %}
-{% set min_go = ">=1.22" %}
-{% set name = "kubo" %}
 {% set version = "0.32.0" %}
+
+{% set name = "kubo" %}
 {% set gomodule = "github.com/ipfs/" ~ name %}
 
 package:
@@ -17,19 +16,15 @@ build:
   number: 0
 
 requirements:
-  # from e.g. https://github.com/ipfs/kubo/blob/v0.28.0/go.mod#L253
-  {% set min_go = ">=1.22" %}
   build:
-    - {{ compiler('c') }}
+    - {{ compiler("go-cgo") }}
+    - {{ compiler("c") }}
     - {{ stdlib("c") }}
-    - go {{ min_go }}  # [unix]
-    - go-cgo {{ min_go }}  # [unix]
-    - {{ compiler('go') }}  # [win]
-    - posix  # [win]
     - go-licenses
-    - make  # [unix]
+    - posix  # [win]
+    - make   # [unix]
   host:
-    - openssl  # [unix]
+    - openssl
   run_constrained:
     - go-ipfs >=9000
 
@@ -42,11 +37,6 @@ test:
     - ipfs --help
     - ipfs commands
     - ipfs {{ ipfs_args }} init
-    # no longer appear to work in CI
-    # - ipfs {{ ipfs_args }} ls {{ cid }}
-    # - ipfs {{ ipfs_args }} refs {{ cid }}
-    # - ipfs {{ ipfs_args }} get {{ cid }}
-    # - ipfs {{ ipfs_args }} cat {{ cid }}
     - echo "hello conda-forge" > hello.txt
     - ipfs {{ ipfs_args }} add hello.txt
 
