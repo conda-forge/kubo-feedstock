@@ -1,7 +1,8 @@
-{% set min_go = ">=1.22" %}
+{% set version = "0.32.0" %}
+
 {% set name = "kubo" %}
-{% set version = "0.30.0" %}
 {% set gomodule = "github.com/ipfs/" ~ name %}
+{% set go_min = ">=1.22" %}
 
 package:
   name: {{ name }}
@@ -10,25 +11,23 @@ package:
 source:
   - folder: src/{{ gomodule }}
     url: https://{{ gomodule }}/releases/download/v{{ version }}/{{ name }}-source.tar.gz
-    sha256: f863b6dc0f431c81ee2b318d90f2c136fbcfcc52f715f418458bbd4df3e28b4f
+    sha256: e891868a8dde7eb675b124fb857f8916de4328c40503adf582ee84b873b34751
 
 build:
   number: 0
 
 requirements:
-  # from e.g. https://github.com/ipfs/kubo/blob/v0.28.0/go.mod#L253
-  {% set min_go = ">=1.22" %}
   build:
-    - {{ compiler('c') }}
+    - {{ compiler("go-cgo") }}  # [build_platform == target_platform]
+    - go {{ go_min }}           # [build_platform != target_platform]
+    - go-cgo {{ go_min }}       # [build_platform != target_platform]
+    - posix                     # [win]
+    - make                      # [unix]
+    - {{ compiler("c") }}
     - {{ stdlib("c") }}
-    - go {{ min_go }}  # [unix]
-    - go-cgo {{ min_go }}  # [unix]
-    - {{ compiler('go') }}  # [win]
-    - posix  # [win]
     - go-licenses
-    - make  # [unix]
   host:
-    - openssl  # [unix]
+    - openssl
   run_constrained:
     - go-ipfs >=9000
 
@@ -41,11 +40,6 @@ test:
     - ipfs --help
     - ipfs commands
     - ipfs {{ ipfs_args }} init
-    # no longer appear to work in CI
-    # - ipfs {{ ipfs_args }} ls {{ cid }}
-    # - ipfs {{ ipfs_args }} refs {{ cid }}
-    # - ipfs {{ ipfs_args }} get {{ cid }}
-    # - ipfs {{ ipfs_args }} cat {{ cid }}
     - echo "hello conda-forge" > hello.txt
     - ipfs {{ ipfs_args }} add hello.txt
 
@@ -57,7 +51,6 @@ about:
     - src/{{ gomodule }}/LICENSE-APACHE
     - src/{{ gomodule }}/LICENSE-MIT
     - library_licenses/
-    - go-licenses.log
 
   summary: IPFS implementation in Go
 

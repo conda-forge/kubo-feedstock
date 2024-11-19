@@ -2,14 +2,3 @@ c_stdlib_version:          # [osx and x86_64]
 - '10.14'                  # [osx and x86_64]
 MACOSX_SDK_VERSION:        # [osx and x86_64]
 - '10.14'                  # [osx and x86_64]
-
-go_compiler:               # [win]
-- go-nocgo                 # [win]
-go_compiler_version:       # [win]
-- '1.22'                   # [win]
-
-cgo_compiler:              # [unix]
-- go-cgo                   # [unix]
-cgo_compiler_version:      # [unix]
-- '1.22'                   # [unix]
-
