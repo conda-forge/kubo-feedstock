@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eux -o pipefaile
+set -eux -o pipefail
 
 GOPATH="$( pwd )"
 export GOPATH
