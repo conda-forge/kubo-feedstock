@@ -51,7 +51,7 @@ tests:
       - ipfs --debug add hello.txt
 
 about:
-  license: Apache-2.0 or MIT
+  license: Apache-2.0 OR MIT
   license_file:
     # directly provided by upstream
     - src/github.com/ipfs/kubo/LICENSE-APACHE
