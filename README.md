@@ -3,24 +3,23 @@ About kubo-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/kubo-feedstock/blob/main/LICENSE.txt)
 
-Home: https://ipfs.tech
+Home: https://ipfs.tech/
 
-Package license: Apache-2.0 or MIT
+Package license: Apache-2.0 OR MIT
 
 Summary: IPFS implementation in Go
 
 Development: https://github.com/ipfs/kubo
 
-Documentation: https://docs.ipfs.tech
+Documentation: https://docs.ipfs.tech/
 
 Kubo (go-ipfs) the earliest and most widely used implementation of IPFS.
 
 It includes:
-  - an IPFS daemon server
-  - extensive command line tooling
-  - an HTTP Gateway (/ipfs/, /ipns/) for serving content to HTTP browsers
-  - an HTTP RPC API (/api/v0) for controlling the daemon node
-
+- an IPFS daemon server
+- extensive command line tooling
+- an HTTP Gateway (/ipfs/, /ipns/) for serving content to HTTP browsers
+- an HTTP RPC API (/api/v0) for controlling the daemon node
 
 Current build status
 ====================
@@ -198,4 +197,3 @@ Feedstock Maintainers
 
 * [@bollwyvl](https://github.com/bollwyvl/)
 
-<!-- trigger ci -->
