@@ -102,10 +102,16 @@ go-licenses save \
     --ignore internal/reflectlite \
     --ignore internal/runtime/atomic \
     --ignore internal/runtime/exithook \
+    --ignore internal/runtime/maps \
+    --ignore internal/runtime/math \
+    --ignore internal/runtime/sys \
+    --ignore internal/runtime/syscall \
     --ignore internal/saferio \
     --ignore internal/singleflight \
     --ignore internal/stringslite \
+    --ignore internal/sync  \
     --ignore internal/syscall/execenv \
+    --ignore internal/syscall/unix \
     --ignore internal/syscall/windows \
     --ignore internal/syscall/windows/registry \
     --ignore internal/syscall/windows/sysdll \
