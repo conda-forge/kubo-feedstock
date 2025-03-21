@@ -180,6 +180,7 @@ go-licenses save \
     --ignore vendor/golang.org/x/net/http/httpproxy \
     --ignore vendor/golang.org/x/net/http2/hpack \
     --ignore vendor/golang.org/x/net/idna \
+    --ignore vendor/golang.org/x/net/route \
     --ignore vendor/golang.org/x/sys/cpu \
     --ignore vendor/golang.org/x/text/secure/bidirule \
     --ignore vendor/golang.org/x/text/transform \
