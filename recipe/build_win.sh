@@ -4,7 +4,11 @@ set -eux -o pipefail
 GOPATH="$( pwd )"
 export GOPATH
 export CGO_ENABLED=1
+export CGO_LDFLAGS="${LDFLAGS}"
+export CGO_CFLAGS="${CFLAGS}"
+export CGO_CXXFLAGS="${CPPFLAGS}"
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
+export GOTAGS="openssl"
 
 # https://github.com/conda-forge/kubo-feedstock/issues/5
 GOTMPDIR="$(pwd)/tmp"
@@ -13,10 +17,6 @@ export GOTMPDIR
 mkdir -p "${GOTMPDIR}"
 
 # omissions from the unix build, needs investigation
-# export GOTAGS="openssl"
-# export CGO_CFLAGS="${CFLAGS}"
-# export CGO_CXXFLAGS="${CPPFLAGS}"
-# export CGO_LDFLAGS="${LDFLAGS}"
 
 module='github.com/ipfs/kubo'
 
