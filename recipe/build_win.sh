@@ -4,9 +4,6 @@ set -eux -o pipefail
 GOPATH="$( pwd )"
 export GOPATH
 export CGO_ENABLED=1
-# export CGO_LDFLAGS="${LDFLAGS}"
-export CGO_CFLAGS="${CFLAGS}"
-export CGO_CXXFLAGS="${CPPFLAGS}"
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
 export GOTAGS="openssl"
 
