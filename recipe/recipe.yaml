@@ -30,12 +30,10 @@ requirements:
         - make
       else:
         - posix
-    - go >=${{ go_min }}
+    - go-cgo >=${{ go_min }}
     - if: build_platform == target_platform
       then:
         - ${{ compiler("go-cgo") }}
-      else:
-        - go-cgo >=${{ go_min }}
   host:
     - openssl
   run_constraints:
