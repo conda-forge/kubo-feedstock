@@ -3,17 +3,17 @@ schema_version: 1
 
 context:
   version: "0.34.0"
-  name: kubo
-  cid: /ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
+  # the version of go used in upstream CI
+  go_min: "1.24"
 
 package:
-  name: ${{ name }}
+  name: kubo
   version: ${{ version }}
 
 source:
-  - url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-    sha256: fa7c8bf1f47c38b7145385dd03e1f82370458f553f98eadbd108a8dac336d634
-    target_directory: src/github.com/ipfs/kubo
+  url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/kubo-source.tar.gz
+  sha256: fa7c8bf1f47c38b7145385dd03e1f82370458f553f98eadbd108a8dac336d634
+  target_directory: src/github.com/ipfs/kubo
 
 build:
   number: 0
@@ -34,8 +34,8 @@ requirements:
       then:
         - ${{ compiler("go-cgo") }}
       else:
-        - go >=1.22
-        - go-cgo >=1.22
+        - go >=${{ go_min }}
+        - go-cgo >=${{ go_min }}
   host:
     - openssl
   run_constraints:
