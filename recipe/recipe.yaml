@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.33.2"
+  version: "0.35.0"
   name: kubo
   cid: /ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
 
@@ -12,7 +12,7 @@ package:
 
 source:
   - url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-    sha256: 3d25d7d662ed79e2e96aaef83e759e0f2f84e84dee556af5739f854cc04a7398
+    sha256: 3ae6d769ad8959b11a6a40d5ea91319b93e4899e573ddf6e1be4b82b059bd314
     target_directory: src/github.com/ipfs/kubo
 
 build:
