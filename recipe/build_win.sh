@@ -20,10 +20,12 @@ mkdir -p "${GOTMPDIR}"
 
 module='github.com/ipfs/kubo'
 
-make -C "src/${module}" install nofuse
-
 pushd "src/${module}"
     bash "${RECIPE_DIR}/build_library_licenses.sh"
 popd
+
+make -C "src/${module}" install nofuse
+
+ls "${PREFIX}/bin/ipfs.exe"
 
 rm -rf "${GOTMPDIR}"

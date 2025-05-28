@@ -23,6 +23,7 @@ build:
 requirements:
   build:
     - ${{ compiler("c") }}
+    - ${{ compiler("go-cgo") }}
     - ${{ stdlib("c") }}
     - go-licenses
     - if: unix
@@ -30,12 +31,6 @@ requirements:
         - make
       else:
         - posix
-    - if: build_platform == target_platform
-      then:
-        - ${{ compiler("go-cgo") }}
-      else:
-        - go >=1.22
-        - go-cgo >=1.22
   host:
     - openssl
   run_constraints:
