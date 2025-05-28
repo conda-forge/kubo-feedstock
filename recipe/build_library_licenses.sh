@@ -176,9 +176,16 @@ go-licenses save \
     --ignore vendor/golang.org/x/net/idna \
     --ignore vendor/golang.org/x/sys/cpu \
     --ignore vendor/golang.org/x/text/secure/bidirule \
+    --ignore vendor/golang.org/x/text/transform \
     --ignore vendor/golang.org/x/text/unicode/bidi \
     --ignore vendor/golang.org/x/text/unicode/norm \
-    --ignore vendor/golang.org/x/text/transform \
+    --igonre container/ring \
+    --igonre go/build \
+    --igonre internal/runtime/maps \
+    --igonre internal/runtime/math \
+    --igonre internal/runtime/sys \
+    --igonre internal/sync \
+    --igonre weak \
     --save_path "${LIBRARY_LICENSES_PATH}"
 
 find "${LIBRARY_LICENSES_PATH}"
