@@ -99,6 +99,7 @@ go-licenses save \
     --ignore internal/goroot \
     --ignore internal/goversion \
     --ignore internal/itoa \
+    --ignore internal/lazyregexp \
     --ignore internal/msan \
     --ignore internal/nettrace \
     --ignore internal/oserror \
