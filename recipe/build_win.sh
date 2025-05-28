@@ -3,7 +3,7 @@ set -eux -o pipefail
 
 GOPATH="$( pwd )"
 export GOPATH
-export CGO_ENABLED=0
+export CGO_ENABLED=1
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
 
 # https://github.com/conda-forge/kubo-feedstock/issues/5
