@@ -6,6 +6,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+go_compiler:
+- go-nocgo
 openssl:
 - '3'
 target_platform:
