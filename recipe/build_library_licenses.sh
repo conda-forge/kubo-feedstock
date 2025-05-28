@@ -68,6 +68,7 @@ go-licenses save \
     --ignore go/ast \
     --ignore go/build \
     --ignore go/build/constraint \
+    --ignore go/doc \
     --ignore go/doc/comment \
     --ignore go/format \
     --ignore go/internal/typeparams \
@@ -81,6 +82,7 @@ go-licenses save \
     --ignore internal/abi \
     --ignore internal/asan \
     --ignore internal/bisect \
+    --ignore internal/buildcfg \
     --ignore internal/bytealg \
     --ignore internal/byteorder \
     --ignore internal/chacha8rand \
@@ -94,10 +96,13 @@ go-licenses save \
     --ignore internal/godebugs \
     --ignore internal/goexperiment \
     --ignore internal/goos \
+    --ignore internal/goroot \
+    --ignore internal/goversion \
     --ignore internal/itoa \
     --ignore internal/msan \
     --ignore internal/nettrace \
     --ignore internal/oserror \
+    --ignore internal/platform \
     --ignore internal/poll \
     --ignore internal/profilerecord \
     --ignore internal/race \
@@ -116,6 +121,7 @@ go-licenses save \
     --ignore internal/syscall/windows/registry \
     --ignore internal/syscall/windows/sysdll \
     --ignore internal/sysinfo \
+    --ignore internal/syslist \
     --ignore internal/testlog \
     --ignore internal/unsafeheader \
     --ignore internal/weak \
