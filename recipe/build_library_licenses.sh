@@ -28,6 +28,7 @@ go-licenses save \
     --ignore compress/zlib \
     --ignore container/heap \
     --ignore container/list \
+    --ignore container/ring \
     --ignore context \
     --ignore crypto \
     --ignore crypto/aes \
@@ -65,6 +66,7 @@ go-licenses save \
     --ignore flag \
     --ignore fmt \
     --ignore go/ast \
+    --ignore go/build \
     --ignore go/build/constraint \
     --ignore go/doc/comment \
     --ignore go/format \
@@ -102,9 +104,13 @@ go-licenses save \
     --ignore internal/reflectlite \
     --ignore internal/runtime/atomic \
     --ignore internal/runtime/exithook \
+    --ignore internal/runtime/maps \
+    --ignore internal/runtime/math \
+    --ignore internal/runtime/sys \
     --ignore internal/saferio \
     --ignore internal/singleflight \
     --ignore internal/stringslite \
+    --ignore internal/sync \
     --ignore internal/syscall/execenv \
     --ignore internal/syscall/windows \
     --ignore internal/syscall/windows/registry \
@@ -179,13 +185,7 @@ go-licenses save \
     --ignore vendor/golang.org/x/text/transform \
     --ignore vendor/golang.org/x/text/unicode/bidi \
     --ignore vendor/golang.org/x/text/unicode/norm \
-    --igonre container/ring \
-    --igonre go/build \
-    --igonre internal/runtime/maps \
-    --igonre internal/runtime/math \
-    --igonre internal/runtime/sys \
-    --igonre internal/sync \
-    --igonre weak \
+    --ignore weak \
     --save_path "${LIBRARY_LICENSES_PATH}"
 
 find "${LIBRARY_LICENSES_PATH}"
