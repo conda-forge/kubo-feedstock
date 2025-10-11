@@ -15,13 +15,13 @@ md "%GOTMPDIR%"
 cd "src\github.com\ipfs\kubo" ^
     || exit 2
 
-go build \
+go build ^
     -o "%PREFIX%\Library\bin\ipfs.exe" ^
     .\cmd\ipfs ^
     || exit 3
 
 go-licenses save ./cmd/ipfs ^
-    --save_path "%SRC_DIR%/library_licenses" ^
+    --save_path "%SRC_DIR%\library_licenses" ^
     || exit 4
 
 rd \s \q "%GOTMPDIR%"
