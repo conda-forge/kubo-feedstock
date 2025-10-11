@@ -1,9 +1,27 @@
-copy "%RECIPE_DIR%\build_win.sh" . || exit 1
+@echo on
 
-set "PREFIX=%PREFIX:\=/%"
-set "SRC_DIR=%SRC_DIR:\=/%"
-set "MSYSTEM=MINGW%ARCH%"
-set MSYS2_PATH_TYPE=inherit
-set CHERE_INVOKING=1
+set "GOPATH=%SRC_DIR%"
+set CGO_ENABLED=1
+set "CGO_CFLAGS=%CFLAGS%"
+set "CGO_LDFLAGS=%LDFLAGS%"
+set GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
+set GOTAGS="openssl"
 
-bash -lc "./build_win.sh" || exit 1
+:: https://github.com/conda-forge/kubo-feedstock/issues/5
+set "GOTMPDIR=%SRC_DIR%/tmp"
+
+md "%GOTMPDIR%"
+
+cd "src\github.com\ipfs\kubo" ^
+    || exit 2
+
+go build \
+    -o "%PREFIX%\Library\bin\ipfs.exe" ^
+    .\cmd\ipfs ^
+    || exit 3
+
+go-licenses save ./cmd/ipfs ^
+    --save_path "%SRC_DIR%/library_licenses" ^
+    || exit 4
+
+rd \s \q "%GOTMPDIR%"

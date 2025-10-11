@@ -19,6 +19,8 @@ build:
   number: 0
   script:
     file: build-kubo
+    env:
+      CBC_GO_VERSION: ${{ go_cgo_compiler_version }}
 
 requirements:
   build:
