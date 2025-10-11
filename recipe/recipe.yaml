@@ -19,14 +19,16 @@ build:
   number: 0
   script:
     file: build-kubo
-    env:
-      CBC_GO_VERSION: ${{ go_cgo_compiler_version }}
 
 requirements:
   build:
-    - ${{ compiler("c") }}
-    - ${{ compiler("go-cgo") }}
-    - ${{ stdlib("c") }}
+    - if: unix
+      then:
+        - ${{ compiler("c") }}
+        - ${{ compiler("go-cgo") }}
+        - ${{ stdlib("c") }}
+      else:
+        - ${{ compiler("go") }}
     - go-licenses
     - make
   host:

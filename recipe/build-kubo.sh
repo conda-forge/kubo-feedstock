@@ -13,15 +13,12 @@ export GOTAGS="openssl nofuse"
 
 cd "src/github.com/ipfs/kubo"
 
-bash "${RECIPE_DIR}/check-go-version.sh" \
-    || exit 2
-
 go build \
     -o "${PREFIX}/bin/ipfs" \
     ./cmd/ipfs \
-    || exit 3
+    || exit 2
 
 go-licenses save ./cmd/ipfs \
     --save_path "${SRC_DIR}/library_licenses" \
     --ignore=bazil.org/fuse \
-    || exit 4
+    || exit 3

@@ -1,9 +1,7 @@
 @echo on
 
 set "GOPATH=%SRC_DIR%"
-set CGO_ENABLED=1
-set "CGO_CFLAGS=%CFLAGS%"
-set "CGO_LDFLAGS=%LDFLAGS%"
+set CGO_ENABLED=0
 
 :: https://github.com/conda-forge/kubo-feedstock/issues/5
 set "GOTMPDIR=%SRC_DIR%/tmp"
