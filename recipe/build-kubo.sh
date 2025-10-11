@@ -3,18 +3,23 @@ set -eux -o pipefail
 
 GOPATH="$( pwd )"
 export GOPATH
+export GOROOT="${BUILD_PREFIX}/go"
+
 export CGO_ENABLED=1
 export CGO_CFLAGS="${CFLAGS}"
 export CGO_LDFLAGS="${LDFLAGS}"
 export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
 export GOTAGS="openssl"
 
-module='github.com/ipfs/kubo'
+cd "src/github.com/ipfs/kubo"
 
-make -C "src/${module}" install nofuse
+bash "${RECIPE_DIR}/check-go-version.sh" \
+    || exit 2
 
-pushd "src/${module}"
-    mkdir -p "${PREFIX}/bin"
-    cp cmd/ipfs/ipfs "${PREFIX}/bin"
-    bash "${RECIPE_DIR}/build_library_licenses.sh"
-popd
+go build \
+    -o "${PREFIX}/bin/ipfs" \
+    ./cmd/ipfs \
+    || exit 3
+
+go-licenses save ./cmd/ipfs --save_path "${SRC_DIR}/license-files" \
+    || exit 4
