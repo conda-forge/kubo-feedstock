@@ -2,7 +2,6 @@
 
 set "GOPATH=%SRC_DIR%"
 set CGO_ENABLED=0
-set GOROOT="%BUILD_PREFIX%/go"
 
 cd "src\github.com\ipfs\kubo" ^
     || exit 2
