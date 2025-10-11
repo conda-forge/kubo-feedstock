@@ -4,8 +4,6 @@ set "GOPATH=%SRC_DIR%"
 set CGO_ENABLED=1
 set "CGO_CFLAGS=%CFLAGS%"
 set "CGO_LDFLAGS=%LDFLAGS%"
-set GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=vendor -modcacherw"
-set GOTAGS="openssl"
 
 :: https://github.com/conda-forge/kubo-feedstock/issues/5
 set "GOTMPDIR=%SRC_DIR%/tmp"
