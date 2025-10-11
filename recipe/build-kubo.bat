@@ -3,11 +3,6 @@
 set "GOPATH=%SRC_DIR%"
 set CGO_ENABLED=0
 
-:: https://github.com/conda-forge/kubo-feedstock/issues/5
-set "GOTMPDIR=%SRC_DIR%/tmp"
-
-md "%GOTMPDIR%"
-
 cd "src\github.com\ipfs\kubo" ^
     || exit 2
 
@@ -19,5 +14,3 @@ go build ^
 go-licenses save ./cmd/ipfs ^
     --save_path "%SRC_DIR%\library_licenses" ^
     || exit 4
-
-rd \s \q "%GOTMPDIR%"
