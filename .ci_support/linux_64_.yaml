@@ -14,6 +14,8 @@ docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 go_cgo_compiler_version:
 - '1.25'
+go_compiler:
+- go-nocgo
 openssl:
 - '3'
 target_platform:

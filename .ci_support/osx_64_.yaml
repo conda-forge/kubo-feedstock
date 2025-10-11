@@ -16,6 +16,8 @@ channel_targets:
 - conda-forge main
 go_cgo_compiler_version:
 - '1.25'
+go_compiler:
+- go-nocgo
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
