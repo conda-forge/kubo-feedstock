@@ -22,15 +22,15 @@ build:
 
 requirements:
   build:
-    - if: unix
-      then:
-        - ${{ compiler("c") }}
-        - ${{ compiler("go-cgo") }}
-        - ${{ stdlib("c") }}
-      else:
-        - ${{ compiler("go") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
     - go-licenses
     - make
+    - if: unix
+      then:
+        - ${{ compiler("go-cgo") }}
+      else:
+        - ${{ compiler("go") }}
   host:
     - openssl
   run_constraints:
