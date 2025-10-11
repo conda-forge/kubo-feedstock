@@ -22,17 +22,10 @@ build:
 
 requirements:
   build:
-    - ${{ compiler("c") }}
     - ${{ stdlib("c") }}
+    - ${{ compiler("go") }}
     - go-licenses
     - make
-    - if: unix
-      then:
-        - ${{ compiler("go-cgo") }}
-      else:
-        - ${{ compiler("go") }}
-  host:
-    - openssl
   run_constraints:
     - go-ipfs >=9000
 

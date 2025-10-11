@@ -1,8 +1,5 @@
 c_stdlib_version:         # [osx]
 - "12.3"                  # [osx]
 
-go_cgo_compiler_version:  # [unix]
-- "1.25"                  # [unix]
-
-go_compiler_version:      # [win]
-- "1.25"                  # [win]
+go_compiler_version:
+- "1.25"
