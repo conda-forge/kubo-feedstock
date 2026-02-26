@@ -32,8 +32,8 @@ build:
     content:
       - ${{ "export" if unix else "set" }} "GOPATH=${{ SRC_DIR }}"
       - cd ${{ go_mod }}
-      - go-licenses save ${{ go_cmd }} --save_path "${{ SRC_DIR }}/library_licenses" {% for i in license_ignore | split %}--ignore ${{ i }} {% endfor %}
       - ${{ go_build }} ${{ go_cmd }} -o "${{ go_bin }}"
+      - go-licenses save ${{ go_cmd }} --save_path "${{ SRC_DIR }}/library_licenses" {% for i in license_ignore | split %}--ignore ${{ i }} {% endfor %}
 
 requirements:
   build:
