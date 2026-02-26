@@ -4,26 +4,32 @@ schema_version: 1
 context:
   version: "0.40.0"
   name: kubo
-  cid: /ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
+  go_mod: github.com/ipfs/kubo
+  go_build: go build -v -buildmode=pie -trimpath -modcacherw
+  go_bin: ${{ "%LIBRARY_BIN%\\ipfs.exe" if win else "$PREFIX/bin/ipfs" }}
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  - url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-    sha256: 6ef776c9b974c6406b4b68e877c3f535144679289ac40d988f58cc58c822d277
-    target_directory: src/github.com/ipfs/kubo
+  url: https://${{ go_mod }}/releases/download/v${{ version }}/${{ name }}-source.tar.gz
+  sha256: 6ef776c9b974c6406b4b68e877c3f535144679289ac40d988f58cc58c822d277
+  target_directory: github.com/ipfs/kubo
 
 build:
   number: 0
   script:
-    file: build-kubo
+    env:
+      GOPATH: ${{ SRC_DIR }}
+    content:
+      - cd ${{ go_mod }}/cmd/ipfs
+      - ${{ go_build }} -o "${{ go_bin }}"
+      - go-licenses save . --save_path "${{ SRC_DIR }}/library_licenses" --ignore ${{ go_mod }}
 
 requirements:
   build:
-    - ${{ stdlib("c") }}
-    - ${{ compiler("go") }}
+    - ${{ compiler("go-nocgo") }}
     - go-licenses
     - make
   run_constraints:
@@ -42,8 +48,8 @@ about:
   license: Apache-2.0 OR MIT
   license_file:
     # directly provided by upstream
-    - src/github.com/ipfs/kubo/LICENSE-APACHE
-    - src/github.com/ipfs/kubo/LICENSE-MIT
+    - ${{ go_mod }}/LICENSE-APACHE
+    - ${{ go_mod }}/LICENSE-MIT
     - library_licenses/
   summary: IPFS implementation in Go
   description: |
@@ -56,7 +62,7 @@ about:
     - an HTTP RPC API (/api/v0) for controlling the daemon node
 
   homepage: https://ipfs.tech
-  repository: https://github.com/ipfs/kubo
+  repository: https://${{ go_mod }}
   documentation: https://docs.ipfs.tech
 
 extra:
