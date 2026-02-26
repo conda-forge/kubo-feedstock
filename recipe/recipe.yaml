@@ -7,7 +7,7 @@ context:
   go_mod: github.com/ipfs/kubo
   go_cmd: ./cmd/ipfs
   go_build: go build -v -buildmode=pie -trimpath -modcacherw
-  go_bin: ${{ "%LIBRARY_BIN%\\ipfs.exe" if win else "$PREFIX/bin/ipfs" }}
+  go_bin: ${{ "$PREFIX/bin/ipfs" if unix else "%LIBRARY_BIN%\\ipfs.exe" }}
   go_mod_fuse: bazil.org/fuse
   license_ignore: |-
     ${{ go_mod }}
@@ -32,7 +32,7 @@ build:
     content:
       - ${{ "export" if unix else "set" }} "GOPATH=${{ SRC_DIR }}"
       - cd ${{ go_mod }}
-      - ${{ go_build }} ${{ go_cmd }} -o "${{ go_bin }}"
+      - ${{ go_build }} -o "${{ go_bin }}" ${{ go_cmd }}
       - go-licenses save ${{ go_cmd }} --save_path "${{ SRC_DIR }}/library_licenses" {% for i in license_ignore | split %}--ignore ${{ i }} {% endfor %}
 
 requirements:
