@@ -7,25 +7,32 @@ context:
   go_mod: github.com/ipfs/kubo
   go_build: go build -v -buildmode=pie -trimpath -modcacherw
   go_bin: ${{ "%LIBRARY_BIN%\\ipfs.exe" if win else "$PREFIX/bin/ipfs" }}
+  go_mod_fuse: bazil.org/fuse
+  license_ignore: |-
+    ${{ go_mod }}
+    ${{ go_mod_fuse }}
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://${{ go_mod }}/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-  sha256: 6ef776c9b974c6406b4b68e877c3f535144679289ac40d988f58cc58c822d277
-  target_directory: github.com/ipfs/kubo
+  - url: https://${{ go_mod }}/releases/download/v${{ version }}/${{ name }}-source.tar.gz
+    sha256: 6ef776c9b974c6406b4b68e877c3f535144679289ac40d988f58cc58c822d277
+    target_directory: github.com/ipfs/kubo
+  # manually-recovered licenses
+  - url: https://raw.githubusercontent.com/bazil/fuse/refs/heads/master/LICENSE
+    target_directory: library_licenses_manual/${{ go_mod_fuse }}
+    sha256: b0310b2546ffbf6433751c452c66e5548460e49d1a4fc8260ba3ba93c81b18d7
 
 build:
   number: 0
   script:
-    env:
-      GOPATH: ${{ SRC_DIR }}
     content:
+      - ${{ "export" if unix else "set" }} "GOPATH=${{ SRC_DIR }}"
       - cd ${{ go_mod }}/cmd/ipfs
       - ${{ go_build }} -o "${{ go_bin }}"
-      - go-licenses save . --save_path "${{ SRC_DIR }}/library_licenses" --ignore ${{ go_mod }}
+      - go-licenses save . --save_path "${{ SRC_DIR }}/library_licenses" {% for i in license_ignore | split %}--ignore ${{ i }} {% endfor %}
 
 requirements:
   build:
@@ -51,6 +58,7 @@ about:
     - ${{ go_mod }}/LICENSE-APACHE
     - ${{ go_mod }}/LICENSE-MIT
     - library_licenses/
+    - library_licenses_manual/
   summary: IPFS implementation in Go
   description: |
     Kubo (go-ipfs) the earliest and most widely used implementation of IPFS.
