@@ -5,7 +5,7 @@
 
 [workspace]
 name = "kubo-feedstock"
-version = "3.53.3"  # conda-smithy version used to generate this file
+version = "3.55.1"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/kubo-feedstock"
 authors = ["@conda-forge/kubo"]
 channels = ["conda-forge"]
@@ -75,12 +75,8 @@ description = "Rerender the feedstock."
 cmd = "conda-smithy lint --conda-forge recipe"
 description = "Lint the feedstock recipe"
 
-[feature.shellcheck]
-dependencies.shellcheck = "*"
-platforms = ["linux-64", "osx-64", "win-64"]
-
 [environments]
-smithy = ["shellcheck", "smithy"]
+smithy = ["smithy"]
 
 # This is a copy of default, to be enabled by build_steps.sh during Docker builds
 # __PLATFORM_SPECIFIC_ENV__ = []

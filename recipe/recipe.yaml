@@ -2,28 +2,42 @@
 schema_version: 1
 
 context:
-  version: "0.39.0"
+  version: "0.40.0"
   name: kubo
-  cid: /ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
+  go_mod: github.com/ipfs/kubo
+  go_cmd: ./cmd/ipfs
+  go_build: go build -v -buildmode=pie -trimpath -modcacherw
+  go_bin: ${{ "$PREFIX/bin/ipfs" if unix else "%LIBRARY_BIN%\\ipfs.exe" }}
+  go_mod_fuse: bazil.org/fuse
+  license_ignore: |-
+    ${{ go_mod }}
+    ${{ go_mod_fuse }}
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  - url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-    sha256: a86a89d866f4058718ef2c6e9c014382e73c220cc320ff7af34fad2ab285bec6
-    target_directory: src/github.com/ipfs/kubo
+  - url: https://${{ go_mod }}/releases/download/v${{ version }}/${{ name }}-source.tar.gz
+    sha256: 6ef776c9b974c6406b4b68e877c3f535144679289ac40d988f58cc58c822d277
+    target_directory: github.com/ipfs/kubo
+  # manually-recovered licenses
+  - url: https://raw.githubusercontent.com/bazil/fuse/refs/heads/master/LICENSE
+    target_directory: library_licenses_manual/${{ go_mod_fuse }}
+    sha256: b0310b2546ffbf6433751c452c66e5548460e49d1a4fc8260ba3ba93c81b18d7
 
 build:
   number: 0
   script:
-    file: build-kubo
+    content:
+      - ${{ "export" if unix else "set" }} "GOPATH=${{ SRC_DIR }}"
+      - cd ${{ go_mod }}
+      - ${{ go_build }} -o "${{ go_bin }}" ${{ go_cmd }}
+      - go-licenses save ${{ go_cmd }} --save_path "${{ SRC_DIR }}/library_licenses" {% for i in license_ignore | split %}--ignore ${{ i }} {% endfor %}
 
 requirements:
   build:
-    - ${{ stdlib("c") }}
-    - ${{ compiler("go") }}
+    - ${{ compiler("go-nocgo") }}
     - go-licenses
     - make
   run_constraints:
@@ -42,9 +56,10 @@ about:
   license: Apache-2.0 OR MIT
   license_file:
     # directly provided by upstream
-    - src/github.com/ipfs/kubo/LICENSE-APACHE
-    - src/github.com/ipfs/kubo/LICENSE-MIT
+    - ${{ go_mod }}/LICENSE-APACHE
+    - ${{ go_mod }}/LICENSE-MIT
     - library_licenses/
+    - library_licenses_manual/
   summary: IPFS implementation in Go
   description: |
     Kubo (go-ipfs) the earliest and most widely used implementation of IPFS.
@@ -56,7 +71,7 @@ about:
     - an HTTP RPC API (/api/v0) for controlling the daemon node
 
   homepage: https://ipfs.tech
-  repository: https://github.com/ipfs/kubo
+  repository: https://${{ go_mod }}
   documentation: https://docs.ipfs.tech
 
 extra:
