@@ -5,7 +5,7 @@ context:
   version: "0.40.0"
   name: kubo
   go_mod: github.com/ipfs/kubo
-  go_cmd: cmd/ipfs
+  go_cmd: ./cmd/ipfs
   go_build: go build -v -buildmode=pie -trimpath -modcacherw
   go_bin: ${{ "%LIBRARY_BIN%\\ipfs.exe" if win else "$PREFIX/bin/ipfs" }}
   go_mod_fuse: bazil.org/fuse
