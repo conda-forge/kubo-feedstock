@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.43.1"
+  version: "0.43.2"
   name: kubo
   go_mod: github.com/ipfs/kubo
   go_cmd: ./cmd/ipfs
@@ -19,7 +19,7 @@ package:
 
 source:
   - url: https://${{ go_mod }}/releases/download/v${{ version }}/${{ name }}-source.tar.gz
-    sha256: 470f90d551f34ff65b533299e8f55ed3d2f2d062fd15c998ea53d095bac3ed26
+    sha256: ac09ffea8d5e38903f8e96b3b8de63b6dd915c982718084f0079ae7a45785acc
     target_directory: github.com/ipfs/kubo
   # manually-recovered licenses
   - url: https://raw.githubusercontent.com/bazil/fuse/refs/heads/master/LICENSE
